@@ -5,7 +5,7 @@ mod instructions;
 
 use instructions::*;
 
-declare_id!("ChcCcJSxyzTF3FsragCsXbmhAi3uAR5JSKBtVs3d4bW6");
+declare_id!("6qffiegnidLpc17u11479LuQWaCLiWhhDDRtgcmLncRE");
 
 #[program]
 pub mod anchor_escrow {

@@ -83,61 +83,61 @@ describe("anchor-escrow", () => {
       tokenProgram,
     }
 
-    // it("Initialize mint B only", async () => {
-    //   const lamports = await getMinimumBalanceForRentExemptMint(connection);
-    //   const tx = new Transaction();
+    it("Initialize mint B only", async () => {
+      const lamports = await getMinimumBalanceForRentExemptMint(connection);
+      const tx = new Transaction();
       
-    //   tx.instructions = [
-    //     SystemProgram.createAccount({
-    //       fromPubkey: provider.publicKey,
-    //       newAccountPubkey: mintB.publicKey,
-    //       lamports,
-    //       space: MINT_SIZE,
-    //       programId: TOKEN_PROGRAM_ID,
-    //     }),
-    //     createInitializeMint2Instruction(
-    //       mintB.publicKey,
-    //       6, // decimals
-    //       taker.publicKey, // authority
-    //       null, // freeze authority
-    //       TOKEN_PROGRAM_ID
-    //     ),
-    //     createAssociatedTokenAccountIdempotentInstruction(
-    //       provider.publicKey,
-    //       takerAtaB,
-    //       taker.publicKey,
-    //       mintB.publicKey,
-    //       TOKEN_PROGRAM_ID
-    //     ),
-    //     createMintToInstruction(
-    //       mintB.publicKey,
-    //       takerAtaB,
-    //       taker.publicKey,
-    //       1e9, // 1B tokens
-    //       [],
-    //       TOKEN_PROGRAM_ID
-    //     )
-    //   ];
+      tx.instructions = [
+        SystemProgram.createAccount({
+          fromPubkey: provider.publicKey,
+          newAccountPubkey: mintB.publicKey,
+          lamports,
+          space: MINT_SIZE,
+          programId: TOKEN_PROGRAM_ID,
+        }),
+        createInitializeMint2Instruction(
+          mintB.publicKey,
+          6, // decimals
+          taker.publicKey, // authority
+          null, // freeze authority
+          TOKEN_PROGRAM_ID
+        ),
+        createAssociatedTokenAccountIdempotentInstruction(
+          provider.publicKey,
+          takerAtaB,
+          taker.publicKey,
+          mintB.publicKey,
+          TOKEN_PROGRAM_ID
+        ),
+        createMintToInstruction(
+          mintB.publicKey,
+          takerAtaB,
+          taker.publicKey,
+          1e9, // 1B tokens
+          [],
+          TOKEN_PROGRAM_ID
+        )
+      ];
 
-    //   // const fromAirDropSignature = await connection.requestAirdrop(
-    //   //   new PublicKey(provider.publicKey),
-    //   //   2 * LAMPORTS_PER_SOL
-    //   // );
+      // const fromAirDropSignature = await connection.requestAirdrop(
+      //   new PublicKey(provider.publicKey),
+      //   2 * LAMPORTS_PER_SOL
+      // );
 
-    // // console.log(fromAirDropSignature);
+    // console.log(fromAirDropSignature);
     
     
-    //   await provider.sendAndConfirm(tx, [mintB, taker]).then(log);
-    // });
+      await provider.sendAndConfirm(tx, [mintB, taker]).then(log);
+    });
 
-    // it("Make", async () => {
-    //   await program.methods
-    //     .make(seed, new BN(1e9), new BN(1e9))
-    //     .accounts({ ...accounts })
-    //     .rpc()
-    //     .then(confirm)
-    //     .then(log);
-    // });
+    it("Make", async () => {
+      await program.methods
+        .make(seed, new BN(1e9), new BN(1e9))
+        .accounts({ ...accounts })
+        .rpc()
+        .then(confirm)
+        .then(log);
+    });
 
     it("Refund", async () => {
 

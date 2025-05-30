@@ -9,7 +9,7 @@ pub struct Refund<'info> {
     #[account(
         mut,
         seeds = [b"state", maker.key().as_ref()],
-        bump = 253,  // Use the stored bump
+        bump = vault_state.state_bump,  // Use the stored bump
         close = maker  // Close the state account and send rent to maker
     )]
     pub vault_state: Account<'info, VaultState>,
@@ -17,7 +17,7 @@ pub struct Refund<'info> {
     #[account(
         mut,
         seeds = [b"vault", vault_state.key().as_ref()],
-        bump = 255,  // Use the stored bump
+        bump = vault_state.vault_bump,  // Use the stored bump
     )]
     pub vault: SystemAccount<'info>,
     
